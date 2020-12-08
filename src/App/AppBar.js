@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import { AppContext } from './AppProvider';
 
 const Bar = styled.div`
     display: grid;
@@ -24,13 +25,32 @@ const toProperCase = (lower) => {
 
 const ControlButton = ({ name, active }) => {
     return (
-        <ControlButtonElem active={active}>
-            {toProperCase(name)}
-        </ControlButtonElem>
+        <AppContext.Consumer>
+            {({ page }) => (
+                <ControlButtonElem active={page === name}>
+                    {toProperCase(name)}
+                </ControlButtonElem>
+            )
+
+            }
+
+        </AppContext.Consumer>
+
     )
 }
 
-export default function () {
+// export default function () {
+//     return (
+//         <Bar>
+//             <Logo> CryptoDash </Logo>
+//             <div />
+//             <ControlButton active name='dashboard' />
+//             <ControlButton name='settings' />
+//         </Bar>
+//     )
+// }
+
+const AppBar = () => {
     return (
         <Bar>
             <Logo> CryptoDash </Logo>
@@ -40,3 +60,5 @@ export default function () {
         </Bar>
     )
 }
+
+export default AppBar;
