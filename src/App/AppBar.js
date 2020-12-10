@@ -26,14 +26,16 @@ const toProperCase = (lower) => {
 const ControlButton = ({ name, active }) => {
     return (
         <AppContext.Consumer>
-            {({ page }) => (
-                <ControlButtonElem active={page === name}>
+            {({ page, setPage }) => (
+                <ControlButtonElem
+                    active={page === name}
+                    onClick={() => setPage(name)}
+                >
                     {toProperCase(name)}
                 </ControlButtonElem>
             )
 
             }
-
         </AppContext.Consumer>
 
     )
